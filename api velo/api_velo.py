@@ -53,7 +53,9 @@ class data_cleaner_for_collection():
     
         # set the 'tpe' column with boolean
         dflilleclean['TPE'] = dflilleclean['TPE'].replace("AVEC TPE","True")
-        dflilleclean['TPE'] = dflilleclean['TPE'].replace("SANS TPE","False")
+        for i, row in dflilleclean.iterrows():
+            if not row['TPE'] == 'True':
+                dflilleclean['TPE'].loc[i] = 'False'
     
         # set the 'Available' column with boolean
         dflilleclean['Available'] = dflilleclean['Available'].replace("EN SERVICE","True")
@@ -122,7 +124,7 @@ def send_collection():
     dc = data_cleaner_for_collection()
     response = dc.clean_all(dflille, dfrennes, dflyon, dfparis)
     
-    return(response.to_json(orient='records'))
+    return(response.to_dict('records'))
     
 if __name__ == '__main__':
     print(send_collection())
