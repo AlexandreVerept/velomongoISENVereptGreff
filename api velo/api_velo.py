@@ -132,8 +132,25 @@ def send_collection():
     
     response = pd.concat([response,pd.DataFrame(idlist, columns = ['_id'])], axis=1, join='inner')
     
-    
     return(response.to_dict('records'))
+
+def send_live():
+    """
+    Retourne de quoi faire la mise à jour live
+    """
+    # collect data
+    ac = api_connector()    
+    dflille = pd.json_normalize(ac.get_lille())[["fields.nbvelosdispo","fields.nbplacesdispo","fields.datemiseajour",'fields.geo']]
+    dflille = dflille.rename(columns={'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'idstation'})
+    
+    # change geo to id station
+    idlist = []
+    for i, row in dflille.iterrows():
+        idlist.append(re.sub('[\W\_]', "", str(row['idstation'])))
+    dflille['idstation'] = idlist
+    
+    return(dflille.to_dict('records'))
     
 if __name__ == '__main__':
     print(send_collection())
+    print(send_live())
