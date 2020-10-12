@@ -103,26 +103,26 @@ class data_cleaner_for_collection():
                 
         return(dfparisclean)    
 
-    
-    
-if __name__ == '__main__':
-    
+def send_collection():
+    """
+    se connecte aux API et renvoie de quoi remplir la table 'Collection' sous forme de JSON
+    """
     # collect data
     ac = api_connector()
     
     dflille = pd.json_normalize(ac.get_lille())
-    print(dflille.head())
     
     dfrennes = pd.json_normalize(ac.get_rennes())
-    print(dfrennes.head())
     
     dflyon = pd.json_normalize(ac.get_lyon())
-    print(dflyon.head())
     
     dfparis = pd.json_normalize(ac.get_paris())
-    print(dfparis.head())
     
     #clean data
     dc = data_cleaner_for_collection()
     response = dc.clean_all(dflille, dfrennes, dflyon, dfparis)
-    print(response)
+    
+    return(response.to_json(orient='records'))
+    
+if __name__ == '__main__':
+    print(send_collection())
