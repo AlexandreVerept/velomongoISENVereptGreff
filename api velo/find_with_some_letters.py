@@ -9,8 +9,10 @@ db.global_velo.create_index([('Name','text')])
 
 def search(station):
 
-    cur = db.global_velo.find({"$text": { "$search": station.upper() }})
+    cur = db.global_velo.find({"Name": {"$regex": station, "$options": "i" }})
+    print(cur)
     for doc in cur:
         print(doc)
 
 
+search("St")
