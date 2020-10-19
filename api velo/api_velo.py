@@ -2,6 +2,8 @@ import json
 import requests
 import pandas as pd
 import re
+from datetime import datetime
+import time
 
 class api_connector():
     """
@@ -104,8 +106,8 @@ class data_cleaner_for_collection():
             if not row['Available'] == 'True':
                 dfparisclean['Available'].loc[i] = 'False'
                 
-        return(dfparisclean)    
-
+        return(dfparisclean) 
+    
 def send_collection():
     """
     se connecte aux API et renvoie de quoi remplir la table 'Collection' sous forme de JSON
@@ -140,14 +142,22 @@ def send_live():
     """
     # collect data
     ac = api_connector()    
-    dflille = pd.json_normalize(ac.get_lille())[["fields.nom","fields.nbvelosdispo","fields.nbplacesdispo","fields.datemiseajour",'fields.geo','fields.etat']]
-    dflille = dflille.rename(columns={"fields.nom":"Name",'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'Geo','fields.etat':'status'})
+    dflille = pd.json_normalize(ac.get_lille())[["fields.nbvelosdispo","fields.nbplacesdispo","fields.datemiseajour",'fields.geo']]
+    dflille = dflille.rename(columns={'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'idstation'})
     
     # change geo to id station
     idlist = []
     for i, row in dflille.iterrows():
-        idlist.append(re.sub('[\W\_]', "", str(row['Geo'])))
+        idlist.append(re.sub('[\W\_]', "", str(row['idstation'])))
     dflille['idstation'] = idlist
+    
+    #add timestamp
+    tslist = []
+    for i, row in dflille.iterrows():
+        date = datetime.fromisoformat(row['datemaj'])
+        time_tuple = date.timetuple()
+        tslist.append(int(time.mktime(time_tuple)))
+    dflille['timestamp'] = tslist    
     
     return(dflille.to_dict('records'))
     
