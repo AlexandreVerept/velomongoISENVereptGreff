@@ -140,8 +140,8 @@ def send_live():
     """
     # collect data
     ac = api_connector()    
-    dflille = pd.json_normalize(ac.get_lille())[["fields.nbvelosdispo","fields.nbplacesdispo","fields.datemiseajour",'fields.geo']]
-    dflille = dflille.rename(columns={'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'Geo'})
+    dflille = pd.json_normalize(ac.get_lille())[["fields.nom","fields.nbvelosdispo","fields.nbplacesdispo","fields.datemiseajour",'fields.geo','fields.etat']]
+    dflille = dflille.rename(columns={"fields.nom":"Name",'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'Geo','fields.etat':'status'})
     
     # change geo to id station
     idlist = []
