@@ -9,6 +9,4 @@ localisation = db.location_velo
 
 data = api_velo.send_collection()
 
-
-
 localisation.insert_many(data)

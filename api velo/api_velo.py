@@ -141,12 +141,12 @@ def send_live():
     # collect data
     ac = api_connector()    
     dflille = pd.json_normalize(ac.get_lille())[["fields.nbvelosdispo","fields.nbplacesdispo","fields.datemiseajour",'fields.geo']]
-    dflille = dflille.rename(columns={'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'idstation'})
+    dflille = dflille.rename(columns={'fields.nbvelosdispo':'availbalebike','fields.nbplacesdispo':'availableplaces',"fields.datemiseajour":'datemaj','fields.geo':'Geo'})
     
     # change geo to id station
     idlist = []
     for i, row in dflille.iterrows():
-        idlist.append(re.sub('[\W\_]', "", str(row['idstation'])))
+        idlist.append(re.sub('[\W\_]', "", str(row['Geo'])))
     dflille['idstation'] = idlist
     
     return(dflille.to_dict('records'))
