@@ -10,3 +10,6 @@ localisation = db.location_velo
 data = api_velo.send_collection()
 
 localisation.insert_many(data)
+
+db.lille_velo.create_index([('Geo','2dsphere')])
+db.global_velo.create_index([('Geo','2dsphere')])
