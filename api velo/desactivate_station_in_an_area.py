@@ -1,4 +1,4 @@
-found= db.global_import pprint
+import pprint
 import pymongo
 import dns
 import update_single_station
@@ -24,4 +24,4 @@ if __name__ == '__main__':
         lat = float(input("lat for zone to desactivate ?"))
         lon = float(input("lon for zone to desactivate ?"))
         dist = int(input("dist for zone to desactivate ?"))
-        location_program(lat,lon,dist)
+        desactivate_zone_location_program(lat,lon,dist)

@@ -9,14 +9,14 @@ localisation = db.global_velo
 
 def update_station (station):
     datas = api_velo.send_collection()
-        data = {}
-        _id = {}
+    data = {}
+    _id = {}
 
-        for i in datas:
-            if i["Name"] == station:
-                data = i
-                _id["_id"] = data.pop("_id",None)
-                print(data)
+    for i in datas:
+        if i["Name"] == station:
+            data = i
+            _id["_id"] = data.pop("_id",None)
+            print(data)
     
     try:
         localisation.update_one(_id, {"$set": data}, upsert = True)
