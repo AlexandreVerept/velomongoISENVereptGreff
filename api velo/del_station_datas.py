@@ -10,3 +10,7 @@ def delete_station_datas (_id_station):
     db.global_velo.delete_one( {"_id":_id_station} )
 
     db.lille_velo.delete_many( {"idstation":_id_station} )
+
+if __name__ == '__name__':
+    _id_station = str(input("Choose the id station you want to remove"))
+    delete_station_datas (_id_station)
