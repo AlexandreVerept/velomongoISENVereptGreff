@@ -1,7 +1,5 @@
-import pprint
 import pymongo
 import dns
-import update_single_station
 
 client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
 db = client.get_database('Locations')

@@ -151,13 +151,12 @@ def send_live():
         idlist.append(re.sub('[\W\_]', "", str(row['idstation'])))
     dflille['idstation'] = idlist
     
-    #add timestamp
-    tslist = []
+    #change date to the correct format
+    datelist = []
     for i, row in dflille.iterrows():
         date = datetime.fromisoformat(row['datemaj'])
-        time_tuple = date.timetuple()
-        tslist.append(int(time.mktime(time_tuple)))
-    dflille['timestamp'] = tslist    
+        datelist.append(date)
+    dflille['datemaj'] = datelist
     
     return(dflille.to_dict('records'))
     

@@ -20,7 +20,7 @@ def location_program(lat,lon,dist):
         print("Stations found:")
         for f in found:        
 
-            foundLille = db.lille_velo.find({"idstation" : f["_id"]}).sort([("timestamp", -1)]).limit(1)
+            foundLille = db.lille_velo.find({"idstation" : f["_id"]}).sort([("datemaj", -1)]).limit(1)
 
 
             for fl in foundLille:
