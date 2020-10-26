@@ -6,7 +6,9 @@ db = client.get_database('Locations')
 db.global_velo.create_index([('Name','text')])
 
 def search(station):
-
+    """
+    search for a station by name with only some letters or part of the name
+    """
     cur = db.global_velo.find({"Name": {"$regex": station, "$options": "i" }})
     for doc in cur:
         print(doc)

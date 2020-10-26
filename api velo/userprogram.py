@@ -6,7 +6,10 @@ client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.
 db = client.get_database('Locations')
 
 
-def location_program(lat,lon,dist):
+def location_program(lat,lon,dist=100):
+    """
+    find all the stations in a certain radius from the user
+    """
     # filtre nearby dans global
     found= db.global_velo.find({"Geo": 
                                    {"$near": 

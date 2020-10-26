@@ -7,7 +7,11 @@ import userprogram
 import worker_lille
 import giveallstationslt20
 
-while True:
+def make_choice():
+    """
+    Allow you to launch every scripts corresponding to all the exercices
+    """
+    
     choice = int(input("""Choose what you want to do: \n
     1: Initialise the database \n
     2: Launch the worker for Lille \n
@@ -17,8 +21,10 @@ while True:
     6: Deactivate all station in an area \n
     7: Give all stations with a ration bike/total_stand < 20%\n
        between 18h and 19h (Monday to friday) in the last x days \n"""))
+       
     if choice == 1:
         initbase.init_base() 
+        
     elif choice == 2:
         try:
             worker_lille.launch_worker_Lille()
@@ -49,3 +55,7 @@ while True:
     elif choice == 7:
         print("Here are the stations with a ratio bike/total_stand smaller than 20% in the last week:")
         giveallstationslt20.get_stations_under20()
+
+if __name__ == '__main__':
+    while True:
+        make_choice()

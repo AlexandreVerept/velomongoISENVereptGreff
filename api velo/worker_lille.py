@@ -10,6 +10,9 @@ localisation = db.lille_velo
 key = {}
 
 def launch_worker_Lille():
+    """
+    This worker add the new records to "lille_velo" with the live data every minute
+    """
     while True:
         data = api_velo.send_live()
         localisation.insert_many(data, ordered=True)

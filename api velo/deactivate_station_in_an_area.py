@@ -6,6 +6,9 @@ db = client.get_database('Locations')
 
 
 def deactivate_zone(lat,lon,dist):
+    """
+    deactivate all stations in a select area
+    """
     # filtre nearby dans global
     found= db.global_velo.find({"Geo": 
                                    {"$near": 

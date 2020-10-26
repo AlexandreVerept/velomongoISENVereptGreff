@@ -5,6 +5,9 @@ client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.
 db = client.get_database('Locations')
 
 def delete_station_datas (_id_station):
+    """
+    delete a station by "_id" in "global_velo" and all the corresponding records in 'lille_velo'
+    """
 
     db.global_velo.delete_one( {"_id":_id_station} )
 

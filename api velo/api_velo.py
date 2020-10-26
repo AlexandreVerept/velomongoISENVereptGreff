@@ -6,7 +6,7 @@ from datetime import datetime
 
 class api_connector():
     """
-    Se connecte aux différentes API
+    Connect to the differents APIs
     """
     def get_api(self,url):
         response = requests.request("GET",url)
@@ -31,7 +31,7 @@ class api_connector():
     
 class data_cleaner_for_collection():
     """
-    nettoie les différents datasets
+    Clean the differents datasets
     """
     def clean_all(self,dflille,dfrennes,dflyon,dfparis):
         dflilleclean = self.clean_lille(dflille)
@@ -109,7 +109,7 @@ class data_cleaner_for_collection():
     
 def send_collection():
     """
-    se connecte aux API et renvoie de quoi remplir la table 'global_velo' sous forme de JSON/dict
+    Connect to the APIs and fill in 'global_velo' with a dict
     """
     # collect data
     ac = api_connector()
@@ -137,7 +137,7 @@ def send_collection():
 
 def send_live():
     """
-    Retourne de quoi faire la mise à jour live dans la base "lille_velo"
+    return what is needed to fill in the collection "lille_velo"
     """
     # collect data
     ac = api_connector()    
