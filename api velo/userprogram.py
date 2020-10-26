@@ -1,10 +1,7 @@
 import pprint
 import pymongo
 import dns
-
-client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
-db = client.get_database('Locations')
-
+import json
 
 def location_program(lat,lon,dist=100):
     """
@@ -32,8 +29,13 @@ def location_program(lat,lon,dist=100):
         print("No station found")
         
 if __name__ == '__main__':
+    with open('client.txt','r') as json_file:
+        url = json.load(json_file)
+        url = url["url"]
+    client = pymongo.MongoClient(url)
+    db = client.get_database('Locations')
     while True:
         lat = float(input("lat ?"))
         lon = float(input("lon ?"))
         dist = int(input("dist ?"))
-        location_program(lat,lon,dist)
+        location_program(lat, lon, dist, db)

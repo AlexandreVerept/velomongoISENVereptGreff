@@ -1,11 +1,9 @@
 import pymongo
 import dns
-
-client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
-db = client.get_database('Locations')
+import json
 
 
-def deactivate_zone(lat,lon,dist):
+def deactivate_zone(lat, lon, dist, db):
     """
     deactivate all stations in a select area
     """
@@ -21,6 +19,11 @@ def deactivate_zone(lat,lon,dist):
 
 
 if __name__ == '__main__':
+    with open('client.txt','r') as json_file:
+        url = json.load(json_file)
+        url = url["url"]
+    client = pymongo.MongoClient(url)
+    db = client.get_database('Locations')
     while True:
         lat = float(input("lat for zone to desactivate ?"))
         lon = float(input("lon for zone to desactivate ?"))

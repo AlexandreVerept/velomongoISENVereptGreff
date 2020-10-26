@@ -3,15 +3,12 @@ from datetime import timedelta
 import pprint
 import pymongo
 import dns
-
-client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
-db = client.get_database('Locations')
-
+import json
 
 hourStart = 15
 hourEnd = 16
 
-def get_stations_under20(jours=7):
+def get_stations_under20(db, jours=7):
     """
     Print the _id of each stations that have a bike/total_stand ratio smaller than 20% in the last x days (excluding the week-ends)
     
@@ -88,4 +85,9 @@ def get_stations_under20(jours=7):
         pprint.pprint(f)
     
 if __name__ == '__main__':
-    get_stations_under20()
+    with open('client.txt','r') as json_file:
+        url = json.load(json_file)
+        url = url["url"]
+    client = pymongo.MongoClient(url)
+    db = client.get_database('Locations')
+    get_stations_under20(db)

@@ -48,3 +48,7 @@ An example of record in `lille_velo`:
 
 We can link each `lille_velo` record to the corresponding `global_velo` station with the `idstation`.
 
+### How to launch the project
+
+* Check the url in the client.txt to match your cluster mongoAtlas:
+* Then launch the file Little_ui.py in the folder api velo in order to choose wich part of the project you want to test.
