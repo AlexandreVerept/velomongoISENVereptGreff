@@ -3,6 +3,9 @@ import dns # required for connecting with SRV
 import api_velo
 
 def init_base():
+    """
+    Initialise the data base
+    """
 
     client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
     db = client.get_database('Locations')

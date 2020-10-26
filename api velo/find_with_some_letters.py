@@ -1,7 +1,5 @@
 import pymongo
 import dns # required for connecting with SRV
-import time
-import api_velo
 
 client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
 db = client.get_database('Locations')

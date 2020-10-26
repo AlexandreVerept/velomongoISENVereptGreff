@@ -1,12 +1,11 @@
 import pymongo
 import dns
-import update_single_station
 
 client = pymongo.MongoClient("mongodb+srv://admin:FzM8WTPuY5@cluster0.lgxev.gcp.mongodb.net/test?w=majority")
 db = client.get_database('Locations')
 
 
-def deactivate_zone_location_program(lat,lon,dist):
+def deactivate_zone(lat,lon,dist):
     # filtre nearby dans global
     found= db.global_velo.find({"Geo": 
                                    {"$near": 
@@ -23,4 +22,4 @@ if __name__ == '__main__':
         lat = float(input("lat for zone to desactivate ?"))
         lon = float(input("lon for zone to desactivate ?"))
         dist = int(input("dist for zone to desactivate ?"))
-        deactivate_zone_location_program(lat,lon,dist)
+        deactivate_zone(lat,lon,dist)

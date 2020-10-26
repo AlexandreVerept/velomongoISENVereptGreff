@@ -3,7 +3,6 @@ import requests
 import pandas as pd
 import re
 from datetime import datetime
-import time
 
 class api_connector():
     """
@@ -110,7 +109,7 @@ class data_cleaner_for_collection():
     
 def send_collection():
     """
-    se connecte aux API et renvoie de quoi remplir la table 'Collection' sous forme de JSON
+    se connecte aux API et renvoie de quoi remplir la table 'global_velo' sous forme de JSON/dict
     """
     # collect data
     ac = api_connector()
@@ -138,7 +137,7 @@ def send_collection():
 
 def send_live():
     """
-    Retourne de quoi faire la mise à jour live
+    Retourne de quoi faire la mise à jour live dans la base "lille_velo"
     """
     # collect data
     ac = api_connector()    

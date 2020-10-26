@@ -6,7 +6,8 @@
 
 
 
-**Self-services Bicycle**
+### Subject:
+
 Write 4 programs in python and mongo
 (1) Get self-services Bicycle Stations (geolocations, size, name, tpe, available): Lille, Lyon, Paris and
 Rennes
@@ -20,3 +21,30 @@ Rennes
 - deactivate all station in an area
 - give all stations with a ratio bike/total_stand under 20% between 18h and 19h00 (monday to
 friday)
+
+
+
+### Our Data base structure:
+
+At first, we have a database named `Locations`
+
+!["databasesmongo"](pictures\databasesmongo.png)
+
+In `Locations`, here are the collections we use:
+
+!["Mongo db tables"](pictures\mongodbtables.png)
+
+An example of station in `global_velo`:
+
+!["globalexamples"](pictures\globalexamples.png)
+
+The `_id` is the result of the concatenation of both the latitude and longitude, as it should be unique for each station.
+
+
+
+An example of record in `lille_velo`:
+
+!["lilleexamples"](pictures\lilleexamples.png)
+
+We can link each `lille_velo` record to the corresponding `global_velo` station with the `idstation`.
+
