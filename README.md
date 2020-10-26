@@ -28,15 +28,15 @@ friday)
 
 At first, we have a database named `Locations`
 
-!["databasesmongo"](pictures\databasesmongo.png)
+!["databasesmongo"](pictures/databasesmongo.png)
 
 In `Locations`, here are the collections we use:
 
-!["Mongo db tables"](pictures\mongodbtables.png)
+!["Mongo db tables"](pictures/mongodbtables.png)
 
 An example of station in `global_velo`:
 
-!["globalexamples"](pictures\globalexamples.png)
+!["globalexamples"](pictures/globalexamples.png)
 
 The `_id` is the result of the concatenation of both the latitude and longitude, as it should be unique for each station.
 
@@ -44,7 +44,7 @@ The `_id` is the result of the concatenation of both the latitude and longitude,
 
 An example of record in `lille_velo`:
 
-!["lilleexamples"](pictures\lilleexamples.png)
+!["lilleexamples"](pictures/lilleexamples.png)
 
 We can link each `lille_velo` record to the corresponding `global_velo` station with the `idstation`.
 
