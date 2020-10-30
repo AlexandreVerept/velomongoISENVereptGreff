@@ -16,13 +16,27 @@ Rennes
 (4) Business program:
 
 - find station with name (with some letters)
+
 - update a stations
+
 - delete a station and datas
+
 - deactivate all station in an area
+
 - give all stations with a ratio bike/total_stand under 20% between 18h and 19h00 (monday to
-friday)
+  friday)
 
+  Disclaimer: for this last exercice, we did not managed to put the correct UTC while inserting the dates, so we need to check between
 
+### How to launch the project
+
+* Check the url in the `client.txt` to match your cluster mongoAtlas:
+
+  !["url txt"](pictures/url.png)
+
+* Then launch the file `Little_ui.py` in the folder `api velo` in order to choose which part of the project you want to test.
+
+  !["littleUI"](pictures/choseprog.png)
 
 ### Our Data base structure:
 
@@ -48,7 +62,3 @@ An example of record in `lille_velo`:
 
 We can link each `lille_velo` record to the corresponding `global_velo` station with the `idstation`.
 
-### How to launch the project
-
-* Check the url in the client.txt to match your cluster mongoAtlas:
-* Then launch the file Little_ui.py in the folder api velo in order to choose wich part of the project you want to test.

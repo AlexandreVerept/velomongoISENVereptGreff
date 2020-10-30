@@ -29,7 +29,7 @@ def make_choice():
     6: Update a station \n
     7: Deactivate all station in an area \n
     8: Give all stations with a ration bike/total_stand < 20%\n
-       between 18h and 19h (Monday to friday) in the last x days \n"""))
+       between 2 hours (Monday to friday) in the last x days \n"""))
 
     
     
@@ -68,8 +68,17 @@ def make_choice():
         deactivate_station_in_an_area.deactivate_zone(lat, lon, dist, db)
         
     elif choice == 8:
-        print("Here are the stations with a ratio bike/total_stand smaller than 20% in the last week:")
-        giveallstationslt20.get_stations_under20(db)
+        jours=""
+        hourStart=-1
+        hourEnd=-1
+        while not jours:
+            jours= int(input("x lasts days: x=?\n"))
+        while not (hourStart>=0 and hourStart<23):
+            hourStart = int(input("between x1 hour: x1=?\n"))
+        while not (hourEnd>0 and hourEnd<24 and hourEnd>hourStart):
+            hourEnd = int(input("and x2 hour: x2=?\n"))
+        print("Here are the stations with a ratio bike/total_stand smaller than 20% in the last {} days between {} and {}:".format(str(jours),str(hourStart),str(hourEnd)))
+        giveallstationslt20.get_stations_under20(db,jours,hourStart,hourEnd)
 
 if __name__ == '__main__':
     while True:
