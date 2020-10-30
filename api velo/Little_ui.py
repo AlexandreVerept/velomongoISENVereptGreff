@@ -38,7 +38,7 @@ def make_choice():
         
     elif choice == 2:
         try:
-            worker_lille.launch_worker_Lille()
+            worker_lille.launch_worker_Lille(db)
         except:
             print("You leave the worker\n")
             
