@@ -5,7 +5,7 @@ import pymongo
 import dns
 import json
 
-def get_stations_under20(db, jours=7,hourStart = 15,hourEnd = 16):
+def get_stations_under20(db, jours=30,hourStart = 15,hourEnd = 16):
     """
     Print the _id of each stations that have a bike/total_stand ratio smaller than 20% in the last x days (excluding the week-ends)
     
