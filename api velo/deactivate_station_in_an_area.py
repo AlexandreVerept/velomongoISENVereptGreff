@@ -14,8 +14,11 @@ def deactivate_zone(lat, lon, dist, db):
                                      {"type": "Point",
                                       "coordinates": [lat, lon]},
                                                      "$maxDistance": dist}}, "Available":"True"})
+    print(found)
     for i in found:
-        db.global_velo.update_one(i["_id"], {"$set": {"Available": "False"}}, upsert = True)
+        print(i)
+        db.global_velo.update_one({"_id":i["_id"]}, {"$set": {"Available": "False"}},
+                                  upsert = True)
 
 
 if __name__ == '__main__':
@@ -28,4 +31,4 @@ if __name__ == '__main__':
         lat = float(input("lat for zone to desactivate ?"))
         lon = float(input("lon for zone to desactivate ?"))
         dist = int(input("dist for zone to desactivate ?"))
-        deactivate_zone(lat,lon,dist)
+        deactivate_zone(lat,lon,dist,db)

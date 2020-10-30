@@ -25,8 +25,8 @@ def make_choice():
     2: Launch the worker for Lille \n
     3: Find the nearests stations \n
     4: Find Station with name (only some letters) \n
-    5: Delete a station \n
-    6: Update a station \n
+    5: Update a station \n
+    6: Delete a station \n
     7: Deactivate all station in an area \n
     8: Give all stations with a ration bike/total_stand < 20%\n
        between 2 hours (Monday to friday) in the last x days \n"""))
@@ -47,7 +47,7 @@ def make_choice():
         lat = float(input("lat ?\n"))
         lon = float(input("lon ?\n"))
         dist = int(input("dist ?\n"))
-        userprogram.location_program(lat, lon, dist)
+        userprogram.location_program(lat, lon, db, dist)
         
     elif choice == 4:
         station = str(input("Search a station\n"))

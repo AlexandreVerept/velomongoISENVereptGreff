@@ -3,7 +3,7 @@ import pymongo
 import dns
 import json
 
-def location_program(lat,lon,dist=100):
+def location_program(lat,lon,db,dist=100):
     """
     find all the stations in a certain radius from the user
     """
@@ -38,4 +38,5 @@ if __name__ == '__main__':
         lat = float(input("lat ?"))
         lon = float(input("lon ?"))
         dist = int(input("dist ?"))
-        location_program(lat, lon, dist, db)
+        location_zone(lat, lon, db, dist)
+

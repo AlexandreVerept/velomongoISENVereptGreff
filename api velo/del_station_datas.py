@@ -11,7 +11,7 @@ def delete_station_datas (_id_station, db):
 
     db.lille_velo.delete_many( {"idstation":_id_station} )
 
-if __name__ == '__name__':
+if __name__ == '__main__':
     with open('client.txt','r') as json_file:
         url = json.load(json_file)
         url = url["url"]
